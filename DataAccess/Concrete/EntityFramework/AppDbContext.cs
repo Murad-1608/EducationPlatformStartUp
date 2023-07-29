@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=EducationPlatformDb; Integrated Security=true;");
+            optionsBuilder.UseSqlServer(@"Server=sql8005.site4now.net; Database=db_a9cdd6_murad; Integrated Security=false;user id=db_a9cdd6_murad_admin;password=murad123");
         }
 
         public DbSet<Category> Categories { get; set; }
