@@ -14,10 +14,10 @@ namespace WebAPI.Controllers
             this.teacherService = teacherService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpGet("getforhome")]
+        public IActionResult GetForHome()
         {
-            var teachers = teacherService.GetAll();
+            var teachers = teacherService.GetAllForHome();
 
             return Ok(teachers);
         }

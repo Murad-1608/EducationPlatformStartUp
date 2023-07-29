@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entity.Concrete;
+using Entity.DTOs;
 
 namespace Business.Abstract
 {
@@ -7,5 +8,6 @@ namespace Business.Abstract
     {
         void Add(Teacher teacher);
         IDataResult<List<Teacher>> GetAll();
+        IDataResult<List<TeacherForHomeDto>> GetAllForHome();
     }
 }

@@ -2,6 +2,7 @@
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 
 namespace Business.Concrete
 {
@@ -23,6 +24,13 @@ namespace Business.Concrete
             var teachers = teacherDal.GetAll();
 
             return new SuccessDataResult<List<Teacher>>(teachers);
+        }
+
+        public IDataResult<List<TeacherForHomeDto>> GetAllForHome()
+        {
+            var teachers = teacherDal.GetAllForHome();
+
+            return new SuccessDataResult<List<TeacherForHomeDto>>(teachers);
         }
     }
 }
