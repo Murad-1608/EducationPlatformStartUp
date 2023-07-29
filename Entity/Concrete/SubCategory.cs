@@ -2,13 +2,12 @@
 
 namespace Entity.Concrete
 {
-    public class Category : IEntity
+    public class SubCategory : IEntity
     {
         public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
-        public List<Course> Course { get; set; }
-        public List<SubCategory> SubCategories { get; set; }
 
-
+        public Category Category { get; set; }
     }
 }

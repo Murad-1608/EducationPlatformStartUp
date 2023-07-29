@@ -12,6 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseVideo> CourseVideos { get; set; }
         public DbSet<LessonTitle> LessonTitles { get; set; }
@@ -19,5 +20,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Faq> Faqs { get; set; }
     }
 }
