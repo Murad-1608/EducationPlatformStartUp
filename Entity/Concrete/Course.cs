@@ -5,7 +5,7 @@ namespace Entity.Concrete
     public class Course : IEntity
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
+        public string TeacherId { get; set; }
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -19,6 +19,7 @@ namespace Entity.Concrete
         public bool Status { get; set; }
 
         public Category Category { get; set; }
+        public Teacher Teacher { get; set; }
         public List<LessonTitle> LessonTitles { get; set; }
     }
 }
