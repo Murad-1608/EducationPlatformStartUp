@@ -51,5 +51,24 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+
+        [HttpPost("registerasteacher")]
+        public IActionResult Register(TeacherForRegisterDto teacherForRegisterDto)
+        {
+            var userExists = _authService.UserExists(teacherForRegisterDto.Email);
+            if (!userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
+
+            var registerResult = _authService.RegisterAsTeacher(teacherForRegisterDto);
+            var result = _authService.CreateAccessToken(registerResult.Data);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result.Message);
+        }
     }
 }
