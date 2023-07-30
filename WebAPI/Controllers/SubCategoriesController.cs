@@ -28,6 +28,19 @@ namespace WebAPI.Controllers
         }
         #endregion
 
+        #region GetAllWithBaseCategory
+        [HttpGet("GetAllWithBaseCategory")]
+        public IActionResult GetAllWithBaseCategory()
+        {
+            var result = _subCategoryService.GetAllWithBaseCategory();
+            if(result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        #endregion
+
         #region GetById
         [HttpGet("GetById/{id}")]
         public IActionResult GetById(int id)
@@ -41,11 +54,37 @@ namespace WebAPI.Controllers
         }
         #endregion
 
-        #region Add
-        [HttpPost("Add")]
-        public IActionResult Add(SubCategory subCategory,int categoryId)
+        #region GetByIdWithBaseCategory
+        [HttpGet("GetByIdWithBaseCategory/{id}")]
+        public IActionResult GetByIdWithBaseCategory(int id)
         {
-            var result = _subCategoryService.Add(subCategory, categoryId);
+            var result = _subCategoryService.GetByIdWithBaseCategory(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        #endregion
+
+        #region Add
+        [HttpPost("Add")]    
+        public IActionResult Add( SubCategory subCategory)
+        {
+            var result = _subCategoryService.Add(subCategory);
+            if (result.Success)
+            {
+                return Ok(result); 
+            }
+            return BadRequest(result);
+        }
+        #endregion
+
+        #region Update
+        [HttpPost("Update/{id}")]
+        public IActionResult Update(SubCategory subCategory)
+        {
+            var result = _subCategoryService.Update(subCategory);
             if (result.Success)
             {
                 return Ok(result);

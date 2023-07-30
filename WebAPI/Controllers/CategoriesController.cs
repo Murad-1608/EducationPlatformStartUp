@@ -27,11 +27,37 @@ namespace WebAPI.Controllers
         }
         #endregion
 
+        #region GetAllForHome
+        [HttpGet("GetAllForHome")]
+        public IActionResult GetAllForHome()
+        {
+            var result = _categoryService.GetAllForHome();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        #endregion
+
         #region GetById
         [HttpGet("GetById/{id}")]
         public IActionResult GetById(int id)
         {
             var result = _categoryService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        #endregion
+
+        #region GetByIdForHome
+        [HttpGet("GetByIdForHome/{id}")]
+        public IActionResult GetByIdForHome(int id)
+        {
+            var result = _categoryService.GetByIdForHome(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -55,9 +81,9 @@ namespace WebAPI.Controllers
 
         #region Update
         [HttpPost("Update/{id}")]
-        public IActionResult Update(int id)
+        public IActionResult Update(Category category)
         {
-            var result = _categoryService.Update(id);
+            var result = _categoryService.Update(category);
             if (result.Success)
             {
                 return Ok(result);

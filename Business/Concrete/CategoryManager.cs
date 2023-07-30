@@ -46,15 +46,24 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Category>>(categoryDal.GetAll(),Messages.CategoryListed);
         }
 
+        public IDataResult<List<CategoryForHomeDto>> GetAllForHome()
+        {
+            return new SuccessDataResult<List<CategoryForHomeDto>>(categoryDal.CategorForHomeGetAll());
+        }
+
         public IDataResult<Category> GetById(int id)
         {
             return new SuccessDataResult<Category>(categoryDal.Get(x => x.Id == id));
         }
 
-        [ValidationAspect(typeof(CategoryValidator))]
-        public IResult Update(int id)
+        public IDataResult<CategoryForHomeDto> GetByIdForHome(int id)
         {
-            Category category = categoryDal.Get(x => x.Id == id);
+            return new SuccessDataResult<CategoryForHomeDto>(categoryDal.GetByIdForHome(id));
+        }
+
+        [ValidationAspect(typeof(CategoryValidator))]
+        public IResult Update(Category category)
+        {
             var result = BusinessRules.Run(CheckIfCategoryNameExistForUpdate(category.Id,category.Name));
             if(result != null)
             {

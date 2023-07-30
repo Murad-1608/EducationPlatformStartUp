@@ -6,12 +6,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+using Entity.DTOs;
 
 namespace Business.Concrete
 {
@@ -24,14 +19,13 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(SubCategoryValidator))]
-        public IResult Add(SubCategory subCategory,int categoryId)
+        public IResult Add(SubCategory subCategory)
         {
             var result = BusinessRules.Run(CheckIfSubCategoryNameExist(subCategory.Name));
             if (result !=null)
             {
                 return result;
             }
-            subCategory.CategoryId = categoryId;
             _subCategoryDal.Add(subCategory);
             return new SuccessResult(Messages.SubCategoryAdded);
         }
@@ -52,21 +46,32 @@ namespace Business.Concrete
            return new SuccessDataResult<List<SubCategory>>(_subCategoryDal.GetAll(),Messages.SubCategoryListed);
         }
 
+        public IDataResult<List<SubCategoryWithBaseCategoryDto>> GetAllWithBaseCategory()
+        {
+            return new SuccessDataResult<List<SubCategoryWithBaseCategoryDto>>(_subCategoryDal.GetAllWithBaseCategory());
+        }
+
         public IDataResult<SubCategory> GetById(int id)
         {
             return new SuccessDataResult<SubCategory>(_subCategoryDal.Get(x => x.Id == id));
         }
 
-        [ValidationAspect(typeof(SubCategoryValidator))]
-        public IResult Update(int id,int categoryId)
+
+        public IDataResult<SubCategoryWithBaseCategoryDto> GetByIdWithBaseCategory(int id)
         {
-            SubCategory subCategory = _subCategoryDal.Get(x => x.Id == id);
+            var result = _subCategoryDal.GetByIdWithBaseCategory(id);      
+            return new SuccessDataResult<SubCategoryWithBaseCategoryDto>(result);
+        }
+
+
+        [ValidationAspect(typeof(SubCategoryValidator))]
+        public IResult Update(SubCategory subCategory)
+        {    
             var result = BusinessRules.Run(CheckIfSubCategoryNameExistForUpdate(subCategory.Name, subCategory.Id));
             if(result != null)
             {
                 return result;
             }
-            subCategory.CategoryId = categoryId;
             _subCategoryDal.Update(subCategory);
             return new SuccessResult(Messages.SubCategoryUpdated);
         }
