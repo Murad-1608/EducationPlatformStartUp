@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
+using DataAccess.Mappers.AutoMapper;
 using Entity.Concrete;
 using Entity.DTOs;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
             List<TeacherForHomeDto> teacherForHomeDtos = new List<TeacherForHomeDto>();
 
             foreach (var item in teachers)
-            {
+            {                
                 TeacherForHomeDto dto = new TeacherForHomeDto()
                 {
                     Name = $"{item.User.FirstName} {item.User.LastName}",
