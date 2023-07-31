@@ -6,6 +6,7 @@ using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
+using DataAccess.Mappers.AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -47,7 +48,7 @@ builder.Services.AddDependencyResolvers(new ICoreModule[]
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddAutoMapper(typeof(DtoMapper));
 
 
 
