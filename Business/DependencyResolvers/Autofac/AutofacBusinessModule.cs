@@ -23,6 +23,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<TeacherManager>().As<ITeacherService>();
             builder.RegisterType<EfTeacherDal>().As<ITeacherDal>();
 
+            builder.RegisterType<FaqManager>().As<IFaqService>();
+            builder.RegisterType<EfFaqDal>().As<IFaqDal>();
+
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
 
