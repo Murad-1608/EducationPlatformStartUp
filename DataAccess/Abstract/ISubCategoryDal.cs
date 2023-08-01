@@ -1,14 +1,12 @@
 ﻿using Core.DataAccess;
 using Entity.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entity.DTOs;
 
 namespace DataAccess.Abstract
 {
     public interface ISubCategoryDal : IRepositoryBase<SubCategory>
     {
+        List<SubCategoryWithBaseCategoryDto> GetAllWithBaseCategory();
+        SubCategoryWithBaseCategoryDto GetByIdWithBaseCategory(int id);
     }
 }

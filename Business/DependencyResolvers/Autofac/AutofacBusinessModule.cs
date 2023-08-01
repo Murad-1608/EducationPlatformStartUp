@@ -17,6 +17,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CategoryManager>().As<ICategoryService>();
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
 
+            builder.RegisterType<SubCategoryManager>().As<ISubCategoryService>();
+            builder.RegisterType<EFSubCategoryDal>().As<ISubCategoryDal>();
+
             builder.RegisterType<TeacherManager>().As<ITeacherService>();
             builder.RegisterType<EfTeacherDal>().As<ITeacherDal>();
 
