@@ -27,5 +27,10 @@ namespace Business.Constants
         public static string SubCategoryUpdated = "Alt Kateqoriya yeniləndi";
         public static string IdNotEnteredSub = "Bu Id-də heç bir alt kateqoriya mövcud deyil";
         public static string SubCategoryDeleted= " Alt Kateqoriya silindi";
+
+        public static string CourseAdded = "Kurs uğurla əlavə olundu";
+        public static string CourseDeleted = "Kurs uğurla silindi";
+        public static string CourseUpdated = "Kurs uğurla yeniləndi";
+        public static string CourseNull = "Kurs boşdur";
     }
 }
