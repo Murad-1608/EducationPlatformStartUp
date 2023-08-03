@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -68,7 +69,7 @@ namespace WebAPI.Controllers
 
         #region Add
         [HttpPost("Add")]
-        public  IActionResult Add(Category category)
+        public  IActionResult Add(CategoryDto category)
         {
             var result = _categoryService.Add(category);
             if(result.Success)
@@ -80,10 +81,10 @@ namespace WebAPI.Controllers
         #endregion
 
         #region Update
-        [HttpPost("Update/{id}")]
-        public IActionResult Update(Category category)
+        [HttpPost("Update")]
+        public IActionResult Update(int id,CategoryDto categorydto)
         {
-            var result = _categoryService.Update(category);
+            var result = _categoryService.Update(id,categorydto);
             if (result.Success)
             {
                 return Ok(result);

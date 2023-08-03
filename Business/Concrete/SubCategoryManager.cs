@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -13,19 +14,22 @@ namespace Business.Concrete
     public class SubCategoryManager : ISubCategoryService
     {
         private readonly ISubCategoryDal _subCategoryDal;
-        public SubCategoryManager(ISubCategoryDal subCategoryDal)
+        private readonly IMapper _mapper;
+        public SubCategoryManager(ISubCategoryDal subCategoryDal,IMapper mapper)
         {
             _subCategoryDal = subCategoryDal;
+            _mapper = mapper;
         }
 
         [ValidationAspect(typeof(SubCategoryValidator))]
-        public IResult Add(SubCategory subCategory)
+        public IResult Add(SubCategoryDto subCategoryDto)
         {
-            var result = BusinessRules.Run(CheckIfSubCategoryNameExist(subCategory.Name));
+            var result = BusinessRules.Run(CheckIfSubCategoryNameExist(subCategoryDto.Name));
             if (result !=null)
             {
                 return result;
             }
+            var subCategory = _mapper.Map<SubCategory>(subCategoryDto);
             _subCategoryDal.Add(subCategory);
             return new SuccessResult(Messages.SubCategoryAdded);
         }

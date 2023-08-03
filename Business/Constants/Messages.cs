@@ -20,6 +20,7 @@ namespace Business.Constants
         public static string CategoryUpdated = "Kateqoriya yeniləndi";
         public static string CategoryDeleted = "Kateqoriya silindi";
         public static string IdNotEntered = "Bu Id-də heç bir kateqoriya mövcud deyil";
+        public static string IdNullCategory = "Id daxil edilməyib";
 
         public static string SubCategoryListed = "Alt Kateqoriya uğurla Listələndi";
         public static string SubCategoryNameExisted = "Bu adda alt kateqoriya hal-hazırda mövcuddur";
