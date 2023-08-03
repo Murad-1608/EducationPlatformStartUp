@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Entity.DTOs
 {
-    public class FaqUpdateDto:IDto
-    {        
+    public class FaqUpdateDto : IDto
+    {
         public string Question { get; set; }
         public bool Status { get; set; }
     }
