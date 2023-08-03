@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Entity.Concrete;
+using Entity.DTOs;
 
 namespace DataAccess.Mappers.AutoMapper
 {
@@ -6,6 +8,7 @@ namespace DataAccess.Mappers.AutoMapper
     {
         public DtoMapper()
         {
+            CreateMap<Category, CategoryDto>().ReverseMap();
             //CreateMap<ProductDto, Product>().ReverseMap();
             //CreateMap<UserAppDto, UserApp>().ReverseMap();
         }

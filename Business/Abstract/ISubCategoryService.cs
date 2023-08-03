@@ -10,7 +10,7 @@ namespace Business.Abstract
         IDataResult<List<SubCategoryWithBaseCategoryDto>> GetAllWithBaseCategory();
         IDataResult<SubCategoryWithBaseCategoryDto> GetByIdWithBaseCategory(int id);
         IDataResult<SubCategory> GetById(int id);
-        IResult Add(SubCategory subCategory);     
+        IResult Add(SubCategoryDto subCategoryDto);     
         IResult Update(SubCategory subCategory);
         IResult Delete(int id);       
     }

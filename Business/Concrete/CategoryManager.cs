@@ -1,10 +1,12 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entity.Concrete;
 using Entity.DTOs;
 
@@ -13,19 +15,23 @@ namespace Business.Concrete
     public class CategoryManager : ICategoryService
     {
         private readonly ICategoryDal categoryDal;
-        public CategoryManager(ICategoryDal categoryDal)
+        private readonly IMapper _mapper;
+        public CategoryManager(ICategoryDal categoryDal,IMapper mapper)
         {
             this.categoryDal = categoryDal;
+            _mapper = mapper;
         }
 
         [ValidationAspect(typeof(CategoryValidator))]
-        public IResult Add(Category category)
+        public IResult Add(CategoryDto categoryDto)
         {
-            var result = BusinessRules.Run(CheckIfCategoryNameExist(category.Name));
+            var result = BusinessRules.Run(CheckIfCategoryNameExist(categoryDto.Name));
             if(result != null)
             {
                 return result;
             }
+            var category = _mapper.Map<Category>(categoryDto);
+
             categoryDal.Add(category);
             return new SuccessResult(Messages.CategoryAdded);
         }
@@ -62,13 +68,23 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CategoryValidator))]
-        public IResult Update(Category category)
+        public IResult Update(int? id,CategoryDto? categoryDto)
         {
-            var result = BusinessRules.Run(CheckIfCategoryNameExistForUpdate(category.Id,category.Name));
+            if (id == null) return new ErrorResult(Messages.IdNullCategory);
+            var dbcat = categoryDal.Get(x => x.Id == id);
+            if (dbcat == null) return new ErrorResult(Messages.IdNotEntered);
+
+            if (categoryDto == null) return new ErrorResult(Messages.IdNotEntered);
+
+            var result = BusinessRules.Run(CheckIfCategoryNameExistForUpdate(dbcat.Id,categoryDto.Name));
             if(result != null)
             {
                 return result;
             }
+
+            dbcat.Name = categoryDto.Name;
+            var category = _mapper.Map<Category>(categoryDto);
+           
             categoryDal.Update(category);
             return new SuccessResult(Messages.CategoryUpdated);
         }
