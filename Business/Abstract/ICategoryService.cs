@@ -11,7 +11,7 @@ namespace Business.Abstract
         IDataResult<Category> GetById(int id);
         IDataResult<CategoryForHomeDto> GetByIdForHome(int id);
         IResult Add(CategoryDto categoryDto);
-        IResult Update(int? id,CategoryDto? categoryDto);
+        IResult Update(int id, CategoryDto? categoryDto);
         IResult Delete(int id);
     }
 }
