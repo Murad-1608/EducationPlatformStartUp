@@ -69,13 +69,25 @@ namespace Business.Concrete
 
 
         [ValidationAspect(typeof(SubCategoryValidator))]
-        public IResult Update(SubCategory subCategory)
-        {    
-            var result = BusinessRules.Run(CheckIfSubCategoryNameExistForUpdate(subCategory.Name, subCategory.Id));
+        public IResult Update(int id,SubCategoryDto? subCategoryDto)
+        {
+            var dbSubCategory = _subCategoryDal.Get(x => x.Id == id);
+            if (dbSubCategory == null) return new ErrorResult(Messages.IdNotEnteredSub);
+
+            if (subCategoryDto == null) return new ErrorResult(Messages.IdNotEnteredSub);
+
+            var result = BusinessRules.Run(CheckIfSubCategoryNameExistForUpdate(subCategoryDto.Name,dbSubCategory.Id));
             if(result != null)
             {
                 return result;
             }
+
+            dbSubCategory.Name=subCategoryDto.Name;
+            dbSubCategory.CategoryId=subCategoryDto.CategoryId;
+
+            var subCategory = _mapper.Map<SubCategory>(subCategoryDto);
+            subCategory.Id = id;
+
             _subCategoryDal.Update(subCategory);
             return new SuccessResult(Messages.SubCategoryUpdated);
         }

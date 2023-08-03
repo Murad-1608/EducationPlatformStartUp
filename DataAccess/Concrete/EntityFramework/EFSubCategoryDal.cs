@@ -19,6 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 SubCategoryWithBaseCategoryDto scwd = new SubCategoryWithBaseCategoryDto
                 {
+                    Id=item.Id,
                     Subcategory = item.Name,
                     Category = item.Category.Name
                 };
@@ -33,6 +34,7 @@ namespace DataAccess.Concrete.EntityFramework
             SubCategory subCategory = context.SubCategories.Include(x => x.Category).FirstOrDefault(x=>x.Id==id);
             SubCategoryWithBaseCategoryDto subCategoryWithBaseCategoryDto = new SubCategoryWithBaseCategoryDto
             {
+                Id=subCategory.Id,
                 Subcategory = subCategory.Name,
                 Category = subCategory.Category.Name
             };

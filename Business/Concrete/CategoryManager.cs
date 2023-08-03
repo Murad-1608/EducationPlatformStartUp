@@ -70,7 +70,6 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CategoryValidator))]
         public IResult Update(int id, CategoryDto? categoryDto)
         {
-            if (id == null) return new ErrorResult(Messages.IdNullCategory);
             var dbcat = categoryDal.Get(x => x.Id == id);
             if (dbcat == null) return new ErrorResult(Messages.IdNotEntered);
 

@@ -19,6 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 CategoryForHomeDto cathomedto = new CategoryForHomeDto
                 {
+                    Id=item.Id,
                     BaseCategory = item.Name,
                     SubCategories = item.SubCategories
                                 .Where(subCategory => subCategory.CategoryId == item.Id)
@@ -37,6 +38,7 @@ namespace DataAccess.Concrete.EntityFramework
             Category category = context.Categories.Include(x => x.SubCategories).FirstOrDefault(x => x.Id == id);
             CategoryForHomeDto categoryForHomeDto = new CategoryForHomeDto
             {
+                Id=category.Id,
                 BaseCategory = category.Name,
                 SubCategories = category.SubCategories
                                 .Where(subCategory => subCategory.CategoryId == category.Id)

@@ -11,7 +11,7 @@ namespace Business.Abstract
         IDataResult<SubCategoryWithBaseCategoryDto> GetByIdWithBaseCategory(int id);
         IDataResult<SubCategory> GetById(int id);
         IResult Add(SubCategoryDto subCategoryDto);     
-        IResult Update(SubCategory subCategory);
+        IResult Update(int id,SubCategoryDto? subCategoryDto);
         IResult Delete(int id);       
     }
 }

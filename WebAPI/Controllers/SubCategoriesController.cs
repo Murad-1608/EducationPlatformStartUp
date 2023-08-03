@@ -82,10 +82,10 @@ namespace WebAPI.Controllers
         #endregion
 
         #region Update
-        [HttpPost("Update/{id}")]
-        public IActionResult Update(SubCategory subCategory)
+        [HttpPost("Update")]
+        public IActionResult Update(int id,SubCategoryDto subCategory)
         {
-            var result = _subCategoryService.Update(subCategory);
+            var result = _subCategoryService.Update(id,subCategory);
             if (result.Success)
             {
                 return Ok(result);
