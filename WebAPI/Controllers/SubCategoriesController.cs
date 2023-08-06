@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,7 +70,7 @@ namespace WebAPI.Controllers
 
         #region Add
         [HttpPost("Add")]    
-        public IActionResult Add( SubCategory subCategory)
+        public IActionResult Add( SubCategoryDto subCategory)
         {
             var result = _subCategoryService.Add(subCategory);
             if (result.Success)

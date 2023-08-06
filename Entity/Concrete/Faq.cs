@@ -6,6 +6,6 @@ namespace Entity.Concrete
     {
         public int Id { get; set; }
         public string Question { get; set; }
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
     }
 }

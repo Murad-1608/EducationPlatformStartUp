@@ -10,8 +10,8 @@ namespace Business.Abstract
         IDataResult<List<CategoryForHomeDto>> GetAllForHome();
         IDataResult<Category> GetById(int id);
         IDataResult<CategoryForHomeDto> GetByIdForHome(int id);
-        IResult Add(Category category);
-        IResult Update(Category category);
+        IResult Add(CategoryDto categoryDto);
+        IResult Update(int id, CategoryDto? categoryDto);
         IResult Delete(int id);
     }
 }

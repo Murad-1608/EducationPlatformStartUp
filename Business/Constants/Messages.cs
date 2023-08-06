@@ -20,6 +20,7 @@ namespace Business.Constants
         public static string CategoryUpdated = "Kateqoriya yeniləndi";
         public static string CategoryDeleted = "Kateqoriya silindi";
         public static string IdNotEntered = "Bu Id-də heç bir kateqoriya mövcud deyil";
+        public static string IdNullCategory = "Id daxil edilməyib";
 
         public static string SubCategoryListed = "Alt Kateqoriya uğurla Listələndi";
         public static string SubCategoryNameExisted = "Bu adda alt kateqoriya hal-hazırda mövcuddur";
@@ -28,9 +29,26 @@ namespace Business.Constants
         public static string IdNotEnteredSub = "Bu Id-də heç bir alt kateqoriya mövcud deyil";
         public static string SubCategoryDeleted= " Alt Kateqoriya silindi";
 
-        public static string CourseAdded = "Kurs uğurla əlavə olundu";
-        public static string CourseDeleted = "Kurs uğurla silindi";
-        public static string CourseUpdated = "Kurs uğurla yeniləndi";
-        public static string CourseNull = "Kurs boşdur";
+
+        public static string ItemNull_FAQ = "FAQ daxil edilməyib";
+        public static string ItemNotFound_FAQ = "FAQ mövcud deyil"; 
+        public static string ItemExists_FAQ = "FAQ mövcuddur";  
+        public static string ItemAdded_FAQ = "FAQ əlavə olundu";
+        public static string NullId_FAQ = "Id daxil edilməyib";
+        public static string ItemDeleted_FAQ = "FAQ silindi"; 
+        public static string ItemUpdated_FAQ = "FAQ yeniləndi"; 
+        public static string StatusNull_FAQ = "status daxil edilməyib";
+        public static string StatusUpdated_FAQ = "FAQ yeniləndi";
+
+        public static string ItemNull_FAQAnswer = "cavab daxil edilməyib";
+        public static string ItemNotFound_FAQAnswer = "cavab mövcud deyil";        
+        public static string ItemAdded_FAQAnswer = "cavab əlavə olundu";
+        public static string NullId_FAQAnswer = "Id daxil edilməyib";
+        public static string ItemDeleted_FAQAnswer = "cavab silindi";
+        public static string ItemUpdated_FAQAnswer = "cavab yeniləndi";        
+        public static string StatusUpdated_FAQAnswer = "cavab yeniləndi";
+
     }
 }
+
+

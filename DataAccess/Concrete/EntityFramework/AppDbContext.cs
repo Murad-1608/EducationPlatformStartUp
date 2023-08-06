@@ -21,5 +21,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Faq> Faqs { get; set; }
+        public DbSet<FaqAnswer> FaqAnswers { get; set; }
     }
 }
