@@ -74,8 +74,8 @@ namespace Business.Concrete
             
             return new SuccessResult(Messages.ItemUpdated_FAQ);
         }
-        
 
+        [ValidationAspect(typeof(FaqValidator))]
         public IResult UpdateFaqStatus(int? id, bool? status)
         {
             if (id is null) return new ErrorResult(Messages.NullId_FAQ);

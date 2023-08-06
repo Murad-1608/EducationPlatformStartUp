@@ -40,6 +40,13 @@ namespace Business.Constants
         public static string StatusNull_FAQ = "status daxil edilməyib";
         public static string StatusUpdated_FAQ = "FAQ yeniləndi";
 
+        public static string ItemNull_FAQAnswer = "cavab daxil edilməyib";
+        public static string ItemNotFound_FAQAnswer = "cavab mövcud deyil";        
+        public static string ItemAdded_FAQAnswer = "cavab əlavə olundu";
+        public static string NullId_FAQAnswer = "Id daxil edilməyib";
+        public static string ItemDeleted_FAQAnswer = "cavab silindi";
+        public static string ItemUpdated_FAQAnswer = "cavab yeniləndi";        
+        public static string StatusUpdated_FAQAnswer = "cavab yeniləndi";
 
     }
 }

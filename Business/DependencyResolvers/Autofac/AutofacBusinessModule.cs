@@ -26,6 +26,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<FaqManager>().As<IFaqService>();
             builder.RegisterType<EfFaqDal>().As<IFaqDal>();
 
+            builder.RegisterType<FaqAnswerManager>().As<IFaqAnswerService>();
+            builder.RegisterType<EFaqAnswerDal>().As<IFaqAnswerDal>();
+
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
 
