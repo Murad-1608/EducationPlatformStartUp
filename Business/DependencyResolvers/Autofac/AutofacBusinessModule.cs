@@ -35,6 +35,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<SupportQuestionManager>().As<ISupportQuestionService>();
             builder.RegisterType<EfSupportQuestionDal>().As<ISupportQuestionDal>();
 
+            builder.RegisterType<SupportAnswerManager>().As<ISupportAnswerService>();
+            builder.RegisterType<EfSupportAnswerDal>().As<ISupportAnswerDal>();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
