@@ -11,6 +11,9 @@ namespace DataAccess.Mappers.AutoMapper
             CreateMap<Category, CategoryDto>().ReverseMap();
             //CreateMap<ProductDto, Product>().ReverseMap();
             //CreateMap<UserAppDto, UserApp>().ReverseMap();
+
+            CreateMap<FaqAnswer, FaqAnswerCreateDto>().ReverseMap();
+            CreateMap<FaqAnswer, FaqAnswerUpdateDto>().ReverseMap();
         }
     }
 }

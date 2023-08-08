@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230729115459_InitialDb")]
+    [Migration("20230730140520_InitialDb")]
     partial class InitialDb
     {
         /// <inheritdoc />
@@ -126,7 +126,7 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -150,6 +150,9 @@ namespace DataAccess.Migrations
 
                     b.Property<int>("NumberOfStudent")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Review")
                         .HasColumnType("int");
@@ -326,9 +329,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.Concrete.Course", b =>
                 {
-                    b.HasOne("Entity.Concrete.Category", null)
+                    b.HasOne("Entity.Concrete.Category", "Category")
                         .WithMany("Course")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Entity.Concrete.SubCategory", "SubCategory")
                         .WithMany()
@@ -341,6 +346,8 @@ namespace DataAccess.Migrations
                         .HasForeignKey("TeacherId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("SubCategory");
 
