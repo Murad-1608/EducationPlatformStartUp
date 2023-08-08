@@ -2,7 +2,7 @@
 
 namespace Entity.DTOs
 {
-    public class SupporAnswerDto : IDto
+    public class SupportAnswerDto : IDto
     {
         public int QuestionId { get; set; }
         public string Content { get; set; }

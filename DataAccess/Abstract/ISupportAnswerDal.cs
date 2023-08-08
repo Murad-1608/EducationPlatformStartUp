@@ -6,6 +6,6 @@ namespace DataAccess.Abstract
 {
     public interface ISupportAnswerDal : IRepositoryBase<SupportAnswer>
     {
-        List<GetSupportAnswer> getSupportAnswersWithQuestions();
+        List<GetSupportAnswerDto> GetSupportAnswersWithQuestions();
     }
 }
