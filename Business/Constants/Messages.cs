@@ -27,20 +27,20 @@ namespace Business.Constants
         public static string SubCategoryAdded = "Alt Kateqoriya əlavə olundu";
         public static string SubCategoryUpdated = "Alt Kateqoriya yeniləndi";
         public static string IdNotEnteredSub = "Bu Id-də heç bir alt kateqoriya mövcud deyil";
-        public static string SubCategoryDeleted= " Alt Kateqoriya silindi";
+        public static string SubCategoryDeleted = " Alt Kateqoriya silindi";
 
 
         public static string ItemNull_FAQ = "FAQ daxil edilməyib";
-        public static string ItemNotFound_FAQ = "FAQ mövcud deyil"; 
-        public static string ItemExists_FAQ = "FAQ mövcuddur";  
+        public static string ItemNotFound_FAQ = "FAQ mövcud deyil";
+        public static string ItemExists_FAQ = "FAQ mövcuddur";
         public static string ItemAdded_FAQ = "FAQ əlavə olundu";
         public static string NullId_FAQ = "Id daxil edilməyib";
-        public static string ItemDeleted_FAQ = "FAQ silindi"; 
-        public static string ItemUpdated_FAQ = "FAQ yeniləndi"; 
+        public static string ItemDeleted_FAQ = "FAQ silindi";
+        public static string ItemUpdated_FAQ = "FAQ yeniləndi";
         public static string StatusNull_FAQ = "status daxil edilməyib";
         public static string StatusUpdated_FAQ = "FAQ yeniləndi";
 
-
+        public static string SupportQuestionAdded = "Sual əlavə olundu";
     }
 }
 

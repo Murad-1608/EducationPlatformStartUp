@@ -22,5 +22,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<FaqAnswer> FaqAnswers { get; set; }
+        public DbSet<SupportAnswer> SupportAnswers { get; set; }
+        public DbSet<SupportQuestion> SupportQuestions { get; set; }
     }
 }
