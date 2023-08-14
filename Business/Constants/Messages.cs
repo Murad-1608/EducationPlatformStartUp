@@ -50,6 +50,11 @@ namespace Business.Constants
 
         public static string SupportQuestionAdded = "Sual əlavə olundu";
         public static string SupportAnswerAdded = "Cavab gonderildi";
+
+        public static string CourseAdded { get; internal set; }
+        public static string CourseNull { get; internal set; }
+        public static string CourseDeleted { get; internal set; }
+        public static string CourseUpdated { get; internal set; }
     }
 }
 
