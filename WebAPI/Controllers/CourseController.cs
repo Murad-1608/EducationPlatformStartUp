@@ -81,5 +81,21 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("homesearch")]
+        public IActionResult HomeSearch(string name)
+        {
+            var values = _courseService.GetByName(name);
+
+            return Ok(values);
+        }
+
+        [HttpGet("getforcoursepage")]
+        public IActionResult GetForCoursePage()
+        {
+            var values = _courseService.GetForCoursePage();
+
+            return Ok(values);
+        }
     }
 }

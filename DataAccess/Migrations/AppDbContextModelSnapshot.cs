@@ -123,8 +123,8 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<decimal>("BonusPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -138,6 +138,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiniDetails")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -175,8 +179,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("SubCategoryId");
 
@@ -388,14 +390,8 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.Concrete.Course", b =>
                 {
-                    b.HasOne("Entity.Concrete.Category", "Category")
-                        .WithMany("Course")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entity.Concrete.SubCategory", "SubCategory")
-                        .WithMany()
+                        .WithMany("Courses")
                         .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -405,8 +401,6 @@ namespace DataAccess.Migrations
                         .HasForeignKey("TeacherId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
 
                     b.Navigation("SubCategory");
 
@@ -491,8 +485,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.Concrete.Category", b =>
                 {
-                    b.Navigation("Course");
-
                     b.Navigation("SubCategories");
                 });
 
@@ -504,6 +496,11 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entity.Concrete.LessonTitle", b =>
                 {
                     b.Navigation("CourseVideos");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.SubCategory", b =>
+                {
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("Entity.Concrete.SupportQuestion", b =>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230808091835_createQuestionAndAnswerTable")]
-    partial class createQuestionAndAnswerTable
+    [Migration("20230815173745_AddDto")]
+    partial class AddDto
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,8 +126,8 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<decimal>("BonusPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -144,12 +144,19 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("MiniDetails")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumberOfStudent")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Review")
                         .HasColumnType("int");
@@ -175,8 +182,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("SubCategoryId");
 
@@ -388,12 +393,8 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.Concrete.Course", b =>
                 {
-                    b.HasOne("Entity.Concrete.Category", null)
-                        .WithMany("Course")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("Entity.Concrete.SubCategory", "SubCategory")
-                        .WithMany()
+                        .WithMany("Courses")
                         .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -487,8 +488,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.Concrete.Category", b =>
                 {
-                    b.Navigation("Course");
-
                     b.Navigation("SubCategories");
                 });
 
@@ -500,6 +499,11 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entity.Concrete.LessonTitle", b =>
                 {
                     b.Navigation("CourseVideos");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.SubCategory", b =>
+                {
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("Entity.Concrete.SupportQuestion", b =>

@@ -57,6 +57,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Course>(course);
         }
 
+        public IDataResult<List<CourseForCoursePageDto>> GetByName(string name)
+        {
+            return new SuccessDataResult<List<CourseForCoursePageDto>>(courseDal.GetWithTeacher(x => x.Name.Contains(name)));
+        }
+
         public IDataResult<List<CourseForListDto>> GetCoursesBestSelling()
         {
             var coursesForBestSelling = courseDal.GetCoursesBestSelling();
@@ -67,6 +72,11 @@ namespace Business.Concrete
         {
             var coursesForStarters = courseDal.GetCoursesForStarters();
             return new SuccessDataResult<List<CourseForListDto>>(coursesForStarters);
+        }
+
+        public IDataResult<List<CourseForCoursePageDto>> GetForCoursePage()
+        {
+            return new SuccessDataResult<List<CourseForCoursePageDto>>(courseDal.GetWithTeacher());
         }
 
         [ValidationAspect(typeof(CourseValidator))]

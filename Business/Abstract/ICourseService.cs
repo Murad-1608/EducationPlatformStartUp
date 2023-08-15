@@ -18,5 +18,7 @@ namespace Business.Abstract
         IResult Add(Course course);
         IResult Update(Course course);
         IResult Delete(int id);
+        IDataResult<List<CourseForCoursePageDto>> GetByName(string name);
+        IDataResult<List<CourseForCoursePageDto>> GetForCoursePage();
     }
 }

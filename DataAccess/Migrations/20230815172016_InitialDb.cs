@@ -31,7 +31,7 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Question = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
+                    Status = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,6 +49,19 @@ namespace DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OperationClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SupportQuestions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupportQuestions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,6 +98,46 @@ namespace DataAccess.Migrations
                         name: "FK_SubCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FaqAnswers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FaqId = table.Column<int>(type: "int", nullable: false),
+                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FaqAnswers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FaqAnswers_Faqs_FaqId",
+                        column: x => x.FaqId,
+                        principalTable: "Faqs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SupportAnswers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SupportQuestionId = table.Column<int>(type: "int", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupportAnswers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SupportAnswers_SupportQuestions_SupportQuestionId",
+                        column: x => x.SupportQuestionId,
+                        principalTable: "SupportQuestions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -146,12 +199,12 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TeacherId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     SubCategoryId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Spoiler = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiniDetail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Review = table.Column<int>(type: "int", nullable: false),
                     NumberOfStudent = table.Column<int>(type: "int", nullable: false),
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -164,12 +217,6 @@ namespace DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Courses", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Courses_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Courses_SubCategories_SubCategoryId",
                         column: x => x.SubCategoryId,
@@ -224,11 +271,6 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_CategoryId",
-                table: "Courses",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Courses_SubCategoryId",
                 table: "Courses",
                 column: "SubCategoryId");
@@ -244,6 +286,11 @@ namespace DataAccess.Migrations
                 column: "LessonTitleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FaqAnswers_FaqId",
+                table: "FaqAnswers",
+                column: "FaqId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LessonTitles_CourseId",
                 table: "LessonTitles",
                 column: "CourseId");
@@ -252,6 +299,12 @@ namespace DataAccess.Migrations
                 name: "IX_SubCategories_CategoryId",
                 table: "SubCategories",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupportAnswers_SupportQuestionId",
+                table: "SupportAnswers",
+                column: "SupportQuestionId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_UserId",
@@ -276,13 +329,22 @@ namespace DataAccess.Migrations
                 name: "CourseVideos");
 
             migrationBuilder.DropTable(
-                name: "Faqs");
+                name: "FaqAnswers");
+
+            migrationBuilder.DropTable(
+                name: "SupportAnswers");
 
             migrationBuilder.DropTable(
                 name: "UserOperationClaims");
 
             migrationBuilder.DropTable(
                 name: "LessonTitles");
+
+            migrationBuilder.DropTable(
+                name: "Faqs");
+
+            migrationBuilder.DropTable(
+                name: "SupportQuestions");
 
             migrationBuilder.DropTable(
                 name: "OperationClaims");

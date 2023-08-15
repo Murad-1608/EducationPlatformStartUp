@@ -19,7 +19,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.Spoiler).NotEmpty().WithMessage("Spoyler boş qoyula bilməz");
             RuleFor(c => c.Language).NotEmpty().WithMessage("Dil bölməsi boş keçilə bilməz");
             RuleFor(c => c.Price).NotEmpty().WithMessage("Qiymət boş keçilə bilməz");
-            RuleFor(c => c.Category).NotEmpty().WithMessage("Kateqoriya seçmək mütləqdir");
+            //RuleFor(c => c.Category).NotEmpty().WithMessage("Kateqoriya seçmək mütləqdir");
             RuleFor(c => c.SubCategory).NotEmpty().WithMessage("Alt Kateqoriya seçmək mütləqdir");
             RuleFor(c => c.LessonTitles).NotEmpty().WithMessage("Dərs başlıqları boş keçilə bilməz");
         }
